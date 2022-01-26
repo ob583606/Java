@@ -21,7 +21,7 @@ public class Lab2Tester {
 		testGetClasslist();
 		testCountAbove();
 		testGetClassAverage();
-		//testRegisterStudent();
+		testRegisterStudent();
 
 		System.out.println("Passed " + testPassCount + " / " + testCount + " tests");
 	}

@@ -47,8 +47,12 @@ public class Lab2 {
 	 * Preconditions: students is not null and contains no null elements
 	 */
 	public static String[] getClasslist (Student[] students) {
-		String[] sIDList = {};
-		System.out.println(sIDList.length);
+		String sIDList[] = new String[students.length];
+		if (students.length == 0) {
+			System.out.println("No students.");
+			return sIDList;
+		}
+		
 		for (int i = 0; i < students.length; i++) {
 			sIDList[i] = students[i].getSID();
 		}
@@ -110,6 +114,16 @@ public class Lab2 {
 	 * Preconditions: students is not null and contains no null elements
 	 *                Student s is not already contained within students
 	 */
-	// TODO: implement registerStudent
+	public static Student[] registerStudent (Student[] students, Student s) {
+		Student newStudents[] = new Student[students.length+1];
+
+		for (int i = 0; i < students.length; i++) {
+			newStudents[i] = students[i];
+		}
+		
+		newStudents[students.length] = s;
+
+		return newStudents;
+	}
 
 }
