@@ -20,9 +20,9 @@ public class A2Tester {
 
 		
 		/* Part 2: The A2Exercises class */
-		// testCountAbove();
-		// testHighestAverage();
-		// testStudentAverage();
+		testCountAbove();
+		testHighestAverage();
+		testStudentAverage();
 		
 		System.out.println("Passed " + testPassCount + " / " + testCount + " tests");
 	}
@@ -72,10 +72,10 @@ public class A2Tester {
 		
 		// Uncomment the tests below once you have completed
 		// the constuctor in the UvicCourse class.
-		/*
+		
 		displayResults(arraysEqual(csc110.getClassList(),arr1), "csc110 constructor class list initialization");
 		displayResults(arraysEqual(math100.getClassList(),arr2), "math100 constructor class list initialization");
-		*/
+		
 	}
 	
 	

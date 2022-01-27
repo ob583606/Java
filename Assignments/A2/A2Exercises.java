@@ -10,7 +10,12 @@ public class A2Exercises {
 	 */
 	public static int countAbove(UvicCourse course, int gradeThreshold) {
 		int count = 0;
-		// TODO: implement this
+		Student[] classy = course.getClassList();
+		for (int i = 0; i < classy.length; i++) {
+			if (classy[i].getGrade() > gradeThreshold) {
+				count++;
+			}
+		}
 		return count; // so it compiles
 	}
 	
@@ -25,7 +30,16 @@ public class A2Exercises {
 	 */
 	public static String highestAverage(UvicCourse[] courses) {
 		String courseName = courses[0].getName();
-		// TODO: implement this	
+		int position = 0;
+
+		for (int i = 0; i < courses.length; i++) {
+			if (courses[i].averageGrade() > courses[position].averageGrade()) {
+				position = i;
+			}
+		}
+		
+		courseName = courses[position].getName();
+
 		return courseName; // so it compiles
 	}
 	
@@ -42,8 +56,27 @@ public class A2Exercises {
 	 *       found in the given array
 	 */
 	public static double studentAverage(UvicCourse[] courses, String sid) {
-		// TODO: implement this	
-		return 0.0; // so it compiles
+		double average = 0.0;
+		int count = 0;
+		Student[] classy;
+
+		for (int i = 0; i < courses.length; i++) {
+			classy = courses[i].getClassList();
+			for (int r = 0; r < classy.length; r++) {
+				if (classy[r].getSid() == sid) {
+					average += classy[r].getGrade();
+					count++;
+				}
+			}
+		}
+
+		if (count == 0) {
+			return 0.0;
+		}
+
+		average /= count;
+		
+		return average; // so it compiles
 	}
 	
 }
