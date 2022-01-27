@@ -92,6 +92,10 @@ public class Lab2 {
 	 */
 	public static double getClassAverage(Student[] students) {
 		double average = 0.0;
+		
+		if (students.length == 0) {
+			return 0.0;
+		}
 
 		for (int i = 0; i < students.length; i++) {
 			if (students[i].getGrade() != -1) {

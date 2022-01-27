@@ -57,9 +57,34 @@ public class Lab2Tester {
 	}
 
 	public static void testIsGradeAbove() {
-		// TODO: write tests for Lab2.isGradeAbove
+		Student s0 = new Student("abc", 50);
+		Student s1 = new Student();
+		Student s2 = new Student("xyz", 99);
+		Student s3 = new Student("def", 88);
 
+		Student[] students0 = {};
+		Student[] students1 = {s0};
+		Student[] students2 = {s0, s1, s2};
+		Student[] students3 = {s0, s2, s3};
 
+		boolean result;
+		boolean expected;
+
+		expected = true;
+		result = Lab2.isGradeAbove(s0, 25);
+		System.out.println("should be  " + expected + " is " + result);
+
+		expected = false;
+		result = Lab2.isGradeAbove(s0, 51);
+		System.out.println("should be  " + expected + " is " + result);
+
+		expected = true;
+		result = Lab2.isGradeAbove(s0, -25);
+		System.out.println("should be  " + expected + " is " + result);
+
+		expected = false;
+		result = Lab2.isGradeAbove(s1, 25);
+		System.out.println("should be  " + expected + " is " + result);
 	}
 
 	public static void testGetClasslist() {
@@ -79,20 +104,43 @@ public class Lab2Tester {
 
 		
 		Student s0  = new Student("abc", 50);
-		Student[] students1 = {s0};
-		String[] expected1 = {"abc"};
+		Student[] students0 = {s0};
+		String[] expected0 = {"abc"};
+
+		Student s2 = new Student("xyz", 99);
+		Student[] students2 = {s0, s2};
+		String[] expected2 = {"abc", "xyz"};
+		
+		Student s3 = new Student("def", 88);
+		Student[] students3 = {s0, s2, s3};
+		String[] expected3 = {"abc", "xyz", "def"};
 
 		String[] result;
 
-		result = Lab2.getClasslist(students1);
-		displayResults(Arrays.equals(result, expected1), "testGetClasslist - 1 elements");
+		result = Lab2.getClasslist(students0);
+		displayResults(Arrays.equals(result, expected0), "testGetClasslist - 1 elements");
+		
+		result = Lab2.getClasslist(students2);
+		displayResults(Arrays.equals(result, expected2), "testGetClasslist - 2 elements");
+
+		result = Lab2.getClasslist(students3);
+		displayResults(Arrays.equals(result, expected3), "testGetClasslist - 3 elements");
 		
 	}
 
 
 	public static void testCountAbove() {
-		// TODO: write tests for Lab2.countAbove
+		Student s0 = new Student("abc", 50);
+		Student s1 = new Student(); // considered invalid for average average calculation
+		Student s2 = new Student("xyz", 99);
+		Student s3 = new Student("def", 88);
 
+		Student[] students0 = {};
+		Student[] students1 = {s0};
+		Student[] students2 = {s0, s1, s2};
+		Student[] students3 = {s0, s2, s3};
+
+		String[] result;
 
 	}
 
@@ -120,19 +168,19 @@ public class Lab2Tester {
 		
 		result = Lab2.getClassAverage(students0);
 		expected = 0;
-		displayResults(Math.abs(result-expected)<THRESHOLD, "testGetClasslist - empty");
+		displayResults(Math.abs(result-expected)<THRESHOLD, "getClassAverage - empty");
 
 		result = Lab2.getClassAverage(students1);
 		expected = 50.0;
-		displayResults(Math.abs(result-expected)<THRESHOLD, "testGetClasslist - 1 student");
+		displayResults(Math.abs(result-expected)<THRESHOLD, "getClassAverage - 1 student");
 
 		result = Lab2.getClassAverage(students2);
 		expected = (50 + 99) / 2.0; // because s1 does not have a "real" grade
-		displayResults(Math.abs(result-expected)<THRESHOLD, "testGetClasslist - 3 students, count 2");
+		displayResults(Math.abs(result-expected)<THRESHOLD, "getClassAverage - 3 students, count 2");
 
 		result = Lab2.getClassAverage(students3);
 		expected = (50 + 99 + 88) / 3.0;
-		displayResults(Math.abs(result-expected)<THRESHOLD, "testGetClasslist - 3 students, count 3");
+		displayResults(Math.abs(result-expected)<THRESHOLD, "getClassAverage - 3 students, count 3");
         
 	}
 
@@ -140,6 +188,19 @@ public class Lab2Tester {
 		// TODO: write tests for Lab2.registerStudent
 		// HINT: the Student class also has a equals method so you
 		// can use Arrays.equals again to compare 2 Student arrays
+		Student s0 = new Student("abc", 50);
+		Student s2 = new Student("xyz", 99);
+		Student s3 = new Student("def", 88);
+
+		Student[] students0 = {};
+		Student[] students1 = {s0};
+		Student[] students3 = {s2, s3};
+
+		Student[] result;
+		Student[] expected = {s2, s3, s0};
+
+		result = Lab2.registerStudent(students3, s0);
+		System.out.println("Testing registerStudent: should be true, is " + Arrays.equals(result, expected));
 
 	}
 	
