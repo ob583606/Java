@@ -87,14 +87,19 @@ public class A2Tester {
 		Student s3a = new Student("v00998877", 67);
 		Student s3b = new Student("v00998877", 74);
 		Student s4 = new Student("v00224466", 92);
-		
+		Student s5 = new Student("v00988269", 90);
+		Student s6 = new Student("v00988268", 92);
+		Student s7 = new Student("v00988267", 95);
+
 		Student[] arr0 = new Student[0];
 		Student[] arr1 = {s1, s2, s3a};
 		Student[] arr2 = {s3b, s4};
+		Student[] arr3 = {s5, s6, s7};
 		
 		UvicCourse empty = new UvicCourse("test course", arr0);
 		UvicCourse csc110 = new UvicCourse("CSC 110", arr1);
 		UvicCourse math100 = new UvicCourse("MATH 100", arr2);
+		UvicCourse math375 = new UvicCourse("MATH 375", arr3);
 		
 		double result = 0.0;
 		double expected = 0.0;
@@ -116,7 +121,10 @@ public class A2Tester {
 		
 		// TODO: add more tests until you are sure your
 		// method handles all valid input scenarios
-		
+
+		result = math375.averageGrade();
+		expected = (90.0+92.0+95.0)/3.0;
+		displayResults(Math.abs(result-expected)<THRESHOLD, "average grade for math375");
 	}
 	
 	
@@ -125,21 +133,28 @@ public class A2Tester {
 		
 		Student s1 = new Student("v00123456", 84);
 		Student s2 = new Student("v00555555", 71);
-		Student s3a = new Student("v00998877", 65);
+		Student s3a = new Student("v00998877", 67);
 		Student s3b = new Student("v00998877", 74);
 		Student s4 = new Student("v00224466", 92);
-		
-		
+		Student s5 = new Student("v00988269", 90);
+		Student s6 = new Student("v00988268", 92);
+		Student s7 = new Student("v00988267", 95);
+
+		Student[] arr0 = new Student[0];
 		Student[] arr1 = {s1, s2, s3a};
 		Student[] arr2 = {s3b, s4};
-					
+		Student[] arr3 = {s5, s6, s7};
+		
+		UvicCourse empty = new UvicCourse("test course", arr0);
 		UvicCourse csc110 = new UvicCourse("CSC 110", arr1);
 		UvicCourse math100 = new UvicCourse("MATH 100", arr2);
+		UvicCourse math375 = new UvicCourse("MATH 375", arr3);
 		
 		int result = 0;
 		int expected = 0;
 		
 		String s1Sid = new String("v00123456");
+		String s2Sid = new String("v00988269");
 		String s3Sid = new String("v00998877");
 		String s4Sid = new String("v00224466");		
 		
@@ -151,6 +166,13 @@ public class A2Tester {
 		// TODO: add more tests until you are sure your
 		// method handles all valid input scenarios
 		
+		result = math375.getGrade(s2Sid);
+		expected = 90;
+		displayResults(result==expected, "get grade of s2 in math375");
+
+		result = math375.getGrade("v00988267");
+		expected = 95;
+		displayResults(result==expected, "get grade of v00988267 in math375");
 	}
 	
 	
