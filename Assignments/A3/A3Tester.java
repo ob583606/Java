@@ -20,15 +20,15 @@ public class A3Tester {
 		*/
 		
 		/* Part 1: */
-		testAddFront();
-		// testAddBack();
-		// testSizeAndIsEmpty();
-		// testRemoveFront();
-		// testRemoveBack();
+		//testAddFront();
+		//testAddBack();
+		//testSizeAndIsEmpty();
+		//testRemoveFront();
+		//testRemoveBack();
 		
 		/* Part 2 */
-		// testRotate();
-		// testInterleave();
+		//testRotate();
+		testInterleave();
 		
 		System.out.println("Passed " + testPassCount + " / " + testCount + " tests");
     }
@@ -118,7 +118,19 @@ public class A3Tester {
 	}
 	
 	public static void testRemoveBack() {
-		// Write all of your own tests here 
+		String result = "";
+		A3LinkedList list1 = new A3LinkedList();
+		
+		list1.addBack("P");
+		list1.addBack("I");
+		list1.addBack("N");
+		list1.addBack("K");
+		result = list1.frontToBack();
+		displayResults(result.equals("{PINK}"), "testRemoveBack");
+		
+		list1.removeBack();
+		result = list1.frontToBack();
+		displayResults(result.equals("{PIN}"), "testRemoveBack");
 	}
 	
 	public static void testRotate() {

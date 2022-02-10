@@ -13,11 +13,36 @@ public class A3LinkedList implements A3List {
 	}
 	
 	public void addFront(String s) {
-
+		A3Node n = new A3Node(s);
+		if (head == null) {
+			head = n;
+			tail = n;
+			n.setNext(null);
+			n.setPrev(null);
+		} else {
+			head.setPrev(n);
+			n.setNext(head);
+			head = n;
+			n.setPrev(null);
+		}
+		length++;
 	}
 
 	public void addBack(String s) {
-		
+		A3Node n = new A3Node(s);
+		if (tail == null) {
+			head = n;
+			tail = n;
+			n.setNext(null);
+			n.setPrev(null);
+		} else {
+			tail.setNext(n);
+			n.setPrev(tail);
+			tail = n;
+			n.setNext(null);
+
+		}
+		length++;
 	}
 	
 	public int size() {
@@ -29,20 +54,72 @@ public class A3LinkedList implements A3List {
 	}
 	
 	public void removeFront() {
-
+		if (head == null) {
+			return;
+		} else {
+			A3Node t = head;
+			head = head.next;
+			head.setPrev(null);
+			t.setNext(null);
+			length--;
+		}
 	}
 	
 	public void removeBack() {
-
+		if (tail == null) {
+			return;
+		} else {
+			A3Node t = tail;
+			tail = tail.prev;
+			tail.setNext(null);
+			t.setPrev(null);
+			length--;
+		}
 	}
 	
 	
 	public void rotate(int n) {
-		
+		if (length == 0) {
+			return;
+		}
+		if (n%length == 0) {
+			return;
+		} else {
+			for (int i = 0; i < n; i++) {
+				tail.setNext(head);
+				head.setPrev(tail);
+				A3Node t = tail;
+				tail = tail.prev;
+				head = head.prev;
+				tail.setNext(null);
+				t.setPrev(null);
+			}
+		}
 	}
 	
 	public void interleave(A3LinkedList other) {
-
+		if (length == 1) {
+			return;
+		}
+		A3Node cur = new A3Node("");
+		A3Node inter = new A3Node("");
+		for (int n = 0; n < (length-1); n++) {
+			cur.setNext(head);
+			cur.setPrev(other.head);
+			
+			for (int i = 0; i < n; i++) {
+				cur.setNext(cur.getNext().getNext());
+				cur.setPrev(cur.getPrev().getNext());
+				
+			}
+			inter.setNext(cur.getNext().getNext());
+			inter.setPrev(cur.getPrev().getNext());
+			cur.getNext().setNext(cur.getPrev().getNext());
+			cur.getPrev().setNext((inter.getNext()));
+			cur.getPrev().getNext().setPrev(cur.getPrev());
+			inter.getPrev().setPrev(cur.getNext());
+			
+		}
 	}
 	
 	/*
