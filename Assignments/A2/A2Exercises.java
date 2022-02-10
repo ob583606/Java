@@ -16,7 +16,7 @@ public class A2Exercises {
 				count++;
 			}
 		}
-		return count; // so it compiles
+		return count;
 	}
 	
 	/*

@@ -1,4 +1,4 @@
-public class A2Tester {
+public class A2Grader {
 
 	private static int testPassCount = 0;
 	private static int testCount = 0;
@@ -8,23 +8,23 @@ public class A2Tester {
 
 	public static void main(String[] args) {
 
-		// Uncomment and test one method at a time. 
-		// Write additional tests as you see fit.
-
-		/* Part 1: The UvicCourse class */
-		testUvicCourseConstructor();
-		testAverageGrade();
-		testGetGrade();
-		testUpdateGrade();		
-		testAddStudent();
-
-		
-		/* Part 2: The A2Exercises class */
-		testCountAbove();
-		testHighestAverage();
-		testStudentAverage();
-		
-		System.out.println("Passed " + testPassCount + " / " + testCount + " tests");
+		try { 
+			/* Part 1: The UvicCourse class */
+			testUvicCourseConstructor();
+			testAverageGrade();
+			testGetGrade();
+			testUpdateGrade();		
+			testAddStudent();
+			
+			/* Part 2: The A2Exercises class */
+			testCountAbove();
+			testHighestAverage();
+			testStudentAverage();
+			
+			System.out.println("Passed " + testPassCount + " / " + testCount + " tests");
+		} catch (Exception e) {
+			System.out.println("Passed " + testPassCount + " / " + " 38 tests");
+		}
 	}
 	
 	/*
@@ -52,35 +52,26 @@ public class A2Tester {
 		
 		Student s1 = new Student("v00123456", 84);
 		Student s2 = new Student("v00555555", 71);
-		Student s3a = new Student("v00998877", 67);
+		Student s3a = new Student("v00998877", 65);
 		Student s3b = new Student("v00998877", 74);
 		Student s4 = new Student("v00224466", 92);
-		Student s5 = new Student("v00988269", 90);
-		Student s6 = new Student("v00988268", 92);
-		Student s7 = new Student("v00988267", 95);
-
+		
 		Student[] arr1 = {s1, s2, s3a};
 		Student[] arr2 = {s3b, s4};
-		Student[] arr3 = {s5, s6, s7};
-		
+					
 		UvicCourse csc110 = new UvicCourse("CSC 110", arr1);
 		UvicCourse math100 = new UvicCourse("MATH 100", arr2);
-		UvicCourse math375 = new UvicCourse("MATH 375", arr3);
 		
 		String expected;
 		
 		expected = "CSC 110";
-		displayResults(expected.equals(csc110.getName()), "csc110 constructor course name initialization");
-		expected = "MATH 100";
-		displayResults(expected.equals(math100.getName()), "math100 constructor course name initialization");
-		expected = "MATH 375";
-		displayResults(expected.equals(math375.getName()), "math375 constructor course name initialization");
-		// Uncomment the tests below once you have completed
-		// the constuctor in the UvicCourse class.
+		displayResults(expected.equals(csc110.getName()), "csc110 constructor course name initialized");
+		displayResults(arraysEqual(csc110.getClassList(),arr1), "csc110 constructor class list initialized");
 		
-		displayResults(arraysEqual(csc110.getClassList(),arr1), "csc110 constructor class list initialization");
-		displayResults(arraysEqual(math100.getClassList(),arr2), "math100 constructor class list initialization");
-		displayResults(arraysEqual(math375.getClassList(),arr3), "math375 constructor class list initialization");
+		expected = "MATH 100";
+		displayResults(expected.equals(math100.getName()), "math100 constructor course name initialized");
+		displayResults(arraysEqual(math100.getClassList(),arr2), "math100 constructor class list initialized");
+		
 	}
 	
 	
@@ -92,19 +83,14 @@ public class A2Tester {
 		Student s3a = new Student("v00998877", 67);
 		Student s3b = new Student("v00998877", 74);
 		Student s4 = new Student("v00224466", 92);
-		Student s5 = new Student("v00988269", 90);
-		Student s6 = new Student("v00988268", 92);
-		Student s7 = new Student("v00988267", 95);
-
+		
 		Student[] arr0 = new Student[0];
 		Student[] arr1 = {s1, s2, s3a};
 		Student[] arr2 = {s3b, s4};
-		Student[] arr3 = {s5, s6, s7};
 		
 		UvicCourse empty = new UvicCourse("test course", arr0);
 		UvicCourse csc110 = new UvicCourse("CSC 110", arr1);
 		UvicCourse math100 = new UvicCourse("MATH 100", arr2);
-		UvicCourse math375 = new UvicCourse("MATH 375", arr3);
 		
 		double result = 0.0;
 		double expected = 0.0;
@@ -124,12 +110,6 @@ public class A2Tester {
 		//System.out.println(result); // for debugging
 		displayResults(Math.abs(result-expected)<THRESHOLD, "average grade for math100");
 		
-		// TODO: add more tests until you are sure your
-		// method handles all valid input scenarios
-
-		result = math375.averageGrade();
-		expected = (90.0+92.0+95.0)/3.0;
-		displayResults(Math.abs(result-expected)<THRESHOLD, "average grade for math375");
 	}
 	
 	
@@ -138,28 +118,21 @@ public class A2Tester {
 		
 		Student s1 = new Student("v00123456", 84);
 		Student s2 = new Student("v00555555", 71);
-		Student s3a = new Student("v00998877", 67);
+		Student s3a = new Student("v00998877", 65);
 		Student s3b = new Student("v00998877", 74);
 		Student s4 = new Student("v00224466", 92);
-		Student s5 = new Student("v00988269", 90);
-		Student s6 = new Student("v00988268", 92);
-		Student s7 = new Student("v00988267", 95);
-
-		Student[] arr0 = new Student[0];
+		
+		
 		Student[] arr1 = {s1, s2, s3a};
 		Student[] arr2 = {s3b, s4};
-		Student[] arr3 = {s5, s6, s7};
-		
-		UvicCourse empty = new UvicCourse("test course", arr0);
+					
 		UvicCourse csc110 = new UvicCourse("CSC 110", arr1);
 		UvicCourse math100 = new UvicCourse("MATH 100", arr2);
-		UvicCourse math375 = new UvicCourse("MATH 375", arr3);
 		
 		int result = 0;
 		int expected = 0;
 		
 		String s1Sid = new String("v00123456");
-		String s2Sid = new String("v00988269");
 		String s3Sid = new String("v00998877");
 		String s4Sid = new String("v00224466");		
 		
@@ -168,16 +141,21 @@ public class A2Tester {
 		//System.out.println(result); // for debugging
 		displayResults(result==expected, "get grade of s1 in csc110");
 		
-		// TODO: add more tests until you are sure your
-		// method handles all valid input scenarios
+		result = csc110.getGrade(s4Sid);
+		expected = -1;
+		//System.out.println(result); // for debugging
+		displayResults(result==expected, "get grade of s4 in csc110");
 		
-		result = math375.getGrade(s2Sid);
-		expected = 90;
-		displayResults(result==expected, "get grade of s2 in math375");
-
-		result = math375.getGrade("v00988267");
-		expected = 95;
-		displayResults(result==expected, "get grade of v00988267 in math375");
+		result = csc110.getGrade(s3Sid);
+		expected = 65;
+		//System.out.println(result); // for debugging
+		displayResults(result==expected, "get grade of s3 in csc110");
+		
+		result = math100.getGrade(s3Sid);
+		expected = 74;
+		//System.out.println(result); // for debugging
+		displayResults(result==expected, "get grade of s3 in math100");
+		
 	}
 	
 	
@@ -221,8 +199,16 @@ public class A2Tester {
 		//System.out.println(result); // for debugging
 		displayResults(result==expected, "s3a updated grade");
 		
-		// TODO: add more tests until you are sure your
-		// method handles all valid input scenarios
+		result = s4.getGrade();
+		expected = 92;
+		//System.out.println(result); // for debugging
+		displayResults(result==expected, "s4 original grade");
+		
+		math100.updateGrade("v00224466", 100);
+		result = s4.getGrade();
+		expected = 100;
+		//System.out.println(result); // for debugging
+		displayResults(result==expected, "s4 updated grade");
 	
 	}
 	
@@ -250,8 +236,17 @@ public class A2Tester {
 		classList = csc115.getClassList();
 		displayResults(arraysEqual(classList,arr1), "csc 115 class list after inserting 1 student");
 		
-		// TODO: add more tests until you are sure your
-		// method handles all valid input scenarios
+		csc115.addStudent(s2);
+		classList = csc115.getClassList();
+		displayResults(arraysEqual(classList,arr2), "csc 115 class list after inserting 2 students");
+		
+		csc115.addStudent(s3);
+		classList = csc115.getClassList();
+		displayResults(arraysEqual(classList,arr3), "csc 115 class list after inserting 3 students");
+		
+		csc115.addStudent(s4);
+		classList = csc115.getClassList();
+		displayResults(arraysEqual(classList,arr4), "csc 115 class list after inserting 4 students");
 		
 	}
 	
@@ -287,9 +282,15 @@ public class A2Tester {
 		//System.out.println(result); // for debugging
 		displayResults(result==expected, "csc115 grades above 91");
 
-		// TODO: add more tests until you are sure your
-		// method handles all valid input scenarios
-		
+		result = A2Exercises.countAbove(csc115, 67);
+		expected = 3;
+		//System.out.println(result); // for debugging
+		displayResults(result==expected, "csc115 grades above 70");		
+
+		result = A2Exercises.countAbove(csc115, 66);
+		expected = 4;
+		//System.out.println(result); // for debugging
+		displayResults(result==expected, "csc115 grades above 70");		
 	}
 	
 	public static void testHighestAverage() {
@@ -309,7 +310,6 @@ public class A2Tester {
 		Student[] arr2 = {s1b, s4}; // 80 average 
 		Student[] arr3 = {s1c}; // 80 average 
 		Student[] arr4 = {s5, s6}; // 60 average
-		
 		UvicCourse csc110 = new UvicCourse("CSC 110", arr1);
 		UvicCourse csc111 = new UvicCourse("CSC 111", arr2);
 		UvicCourse csc115 = new UvicCourse("CSC 115", arr3);
@@ -323,13 +323,25 @@ public class A2Tester {
 		String result = "";
 		String expected = "";
 		
+		result = A2Exercises.highestAverage(courseArray1);
+		expected = "CSC 110";
+		//System.out.println(result); // for debugging
+		displayResults(result.equals(expected), "highestAverage in courseArray1");
+		
 		result = A2Exercises.highestAverage(courseArray2);
 		expected = "CSC 115";
 		//System.out.println(result); // for debugging
 		displayResults(result.equals(expected), "highestAverage in courseArray2");
 		
-		// TODO: add more tests until you are sure your
-		// method handles all valid input scenarios
+		result = A2Exercises.highestAverage(courseArray3);
+		expected = "CSC 111";
+		//System.out.println(result); // for debugging
+		displayResults(result.equals(expected), "highestAverage in courseArray3");
+		
+		result = A2Exercises.highestAverage(courseArray4);
+		expected = "CSC 115";
+		//System.out.println(result); // for debugging
+		displayResults(result.equals(expected), "highestAverage in courseArray4");
 
 	}
 	
@@ -370,8 +382,74 @@ public class A2Tester {
 		//System.out.println(result); // for debugging
 		displayResults(Math.abs(result-expected)<THRESHOLD, "v00555555 average grade");
 		
-		// TODO: add more tests until you are sure your
-		// method handles all valid input scenarios
+		result = A2Exercises.studentAverage(courseArray, "v00998877");
+		expected = 80.0;
+		//System.out.println(result); // for debugging
+		displayResults(Math.abs(result-expected)<THRESHOLD, "v00998877 average grade");
+		
+		result = A2Exercises.studentAverage(courseArray, "v00224466");
+		expected = 90.0;
+		//System.out.println(result); // for debugging
+		displayResults(Math.abs(result-expected)<THRESHOLD, "v00224466 average grade");
+
+		result = A2Exercises.studentAverage(courseArray, "v00910019");
+		expected = 70.0;
+		//System.out.println(result); // for debugging
+		displayResults(Math.abs(result-expected)<THRESHOLD, "v00910019 average grade");
+		
+		result = A2Exercises.studentAverage(courseArray, "v00123321");
+		expected = -1.0;
+		//System.out.println(result); // for debugging
+		displayResults(Math.abs(result-expected)<THRESHOLD, "v00123321 average grade");
+		
+		UvicCourse[] empty = new UvicCourse[0];
+		try {
+			result = A2Exercises.studentAverage(empty, "v00123456");
+			expected = -1.0;
+			//System.out.println(result); // for debugging
+			displayResults(Math.abs(result-expected)<THRESHOLD, "empty array test");
+		} catch (Exception e) {
+			displayResults(false, "empty array test");
+		}
+		
+		
+	}
+	
+	
+	public static void testHasStudent() {
+		System.out.println("\nTesting UvicCourse hasStudent method");
+		
+		Student s1 = new Student("v00123456", 84);
+		Student s2 = new Student("v00555555", 71);
+		Student s3a = new Student("v00998877", 65);
+		Student s3b = new Student("v00998877", 74);
+		Student s4 = new Student("v00224466", 92);
+		
+		
+		Student[] arr1 = {s1, s2, s3a};
+		Student[] arr2 = {s3b, s4};
+					
+		UvicCourse csc110 = new UvicCourse("CSC 110", arr1);
+		UvicCourse math100 = new UvicCourse("MATH 100", arr2);
+		
+		boolean result = false;
+		boolean expected = false;
+		
+		result = csc110.hasStudent(s1);
+		expected = true;
+		displayResults(result==expected, "s1 is in csc 110");
+		
+		result = csc110.hasStudent(s3a);
+		expected = true;
+		displayResults(result==expected, "s3 is in csc 110");
+		
+		result = csc110.hasStudent(s4);
+		expected = false;
+		displayResults(result==expected, "s4 is in csc 110");
+		
+		result = math100.hasStudent(s4);
+		expected = true;
+		displayResults(result==expected, "s4 is in math 100");
 		
 	}
 	

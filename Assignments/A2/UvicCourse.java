@@ -57,16 +57,19 @@ public class UvicCourse {
 	 */
 	public int getGrade(String sid) {
 		int grade = -1;
-		int position = 0;
-		System.out.println(classList[0].getSid());
+		int position = -1;
+
 		for (int i = 0; i < classList.length; i++) {
-			if (classList[i].getSid() == sid) {
+			System.out.println(classList[i]);
+			if (sid.equals(classList[i].getSid())) {
 				position = i;
 			}
 		}
 
-		grade = classList[position].getGrade();
-
+		if (position != -1) {
+			grade = classList[position].getGrade();
+		}
+		
 		return grade; // so it compiles
 	}
 
@@ -117,8 +120,11 @@ public class UvicCourse {
 	 */
 	public void addStudent(Student newStudent) {
 		Student[] updatedList = new Student[classList.length+1];
+		for (int i = 0; i < updatedList.length-1; i++) {
+			updatedList[i] = classList[i];
+		}
 		updatedList[classList.length] = newStudent;	
-		classList = updatedList;
+		this.classList = updatedList;
 	}
 
 }
