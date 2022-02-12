@@ -11,7 +11,7 @@ public class A3LinkedList implements A3List {
 		tail = null;
 		length = 0;
 	}
-	
+
 	public void addFront(String s) {
 		A3Node n = new A3Node(s);
 		if (head == null) {
@@ -56,6 +56,10 @@ public class A3LinkedList implements A3List {
 	public void removeFront() {
 		if (head == null) {
 			return;
+		} else if (head.next == null) {
+			head = null;
+			tail = null;
+			length--;
 		} else {
 			A3Node t = head;
 			head = head.next;
@@ -68,6 +72,10 @@ public class A3LinkedList implements A3List {
 	public void removeBack() {
 		if (tail == null) {
 			return;
+		} else if (tail.prev == null) {
+			head = null;
+			tail = null;
+			length--;
 		} else {
 			A3Node t = tail;
 			tail = tail.prev;
@@ -118,7 +126,8 @@ public class A3LinkedList implements A3List {
 			cur.getPrev().setNext((inter.getNext()));
 			cur.getPrev().getNext().setPrev(cur.getPrev());
 			inter.getPrev().setPrev(cur.getNext());
-			
+			tail = inter.getPrev();
+			other.tail = inter.getNext();
 		}
 	}
 	

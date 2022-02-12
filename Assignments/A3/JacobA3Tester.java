@@ -4,7 +4,7 @@
  * A class to test the methods required for Assignment 3
  *
  */
-public class A3Tester {
+public class JacobA3Tester {
     
 	private static int testPassCount = 0;
 	private static int testCount = 0;
@@ -20,11 +20,11 @@ public class A3Tester {
 		*/
 		
 		/* Part 1: */
-		testAddFront(); 
+		testAddFront();
 		testAddBack();
 		testSizeAndIsEmpty();
-		testRemoveFront(); 
-		testRemoveBack(); 
+		testRemoveFront();
+		testRemoveBack();
 		
 		/* Part 2 */
 		testRotate();
@@ -52,8 +52,6 @@ public class A3Tester {
 		displayResults(result.equals("{JAVA}"), "testAddFront");
 		result = list1.backToFront();
 		displayResults(result.equals("{AVAJ}"), "testAddFront");
-
-
 	}
 	
 	public static void testAddBack() {
@@ -97,7 +95,6 @@ public class A3Tester {
 	}
 	
 	public static void testRemoveFront() {
-		int sizer = 0;
 		String result = "";
 		A3LinkedList list1 = new A3LinkedList();
 		
@@ -107,49 +104,25 @@ public class A3Tester {
 		list1.addBack("K");
 		result = list1.frontToBack();
 		displayResults(result.equals("{PINK}"), "testRemoveFront");
-		sizer = list1.size();
-		displayResults(sizer==4, "testSizeAndIsEmpty");
-		displayResults(list1.isEmpty()==false, "testSizeAndIsEmpty");
-
+		
 		list1.removeFront();
 		result = list1.frontToBack();
 		displayResults(result.equals("{INK}"), "testRemoveFront");
-		sizer = list1.size();
-		displayResults(sizer==3, "testSizeAndIsEmpty");
-		displayResults(list1.isEmpty()==false, "testSizeAndIsEmpty");
 		
 		list1.removeFront();
 		result = list1.frontToBack();
 		displayResults(result.equals("{NK}"), "testRemoveFront");
-		sizer = list1.size();
-		displayResults(sizer==2, "testSizeAndIsEmpty");
-		displayResults(list1.isEmpty()==false, "testSizeAndIsEmpty");
 
 		list1.removeFront();
 		result = list1.frontToBack();
 		displayResults(result.equals("{K}"), "testRemoveFront");
-		sizer = list1.size();
-		displayResults(sizer==1, "testSizeAndIsEmpty");
-		displayResults(list1.isEmpty()==false, "testSizeAndIsEmpty");
 
 		list1.removeFront();
 		result = list1.frontToBack();
 		displayResults(result.equals("{}"), "testRemoveFront");
-		sizer = list1.size();
-		displayResults(sizer==0, "testSizeAndIsEmpty");
-		displayResults(list1.isEmpty()==true, "testSizeAndIsEmpty");
-
-		list1.removeFront();
-		result = list1.frontToBack();
-		displayResults(result.equals("{}"), "testRemoveFront");
-		sizer = list1.size();
-		displayResults(sizer==0, "testSizeAndIsEmpty");
-		displayResults(list1.isEmpty()==true, "testSizeAndIsEmpty");
-				
 	}
 	
 	public static void testRemoveBack() {
-		int sizer = 0;
 		String result = "";
 		A3LinkedList list1 = new A3LinkedList();
 		
@@ -159,51 +132,29 @@ public class A3Tester {
 		list1.addBack("K");
 		result = list1.frontToBack();
 		displayResults(result.equals("{PINK}"), "testRemoveBack");
-		sizer = list1.size();
-		displayResults(sizer==4, "testSizeAndIsEmpty");
-		displayResults(list1.isEmpty()==false, "testSizeAndIsEmpty");
 
 		list1.removeBack();
 		result = list1.frontToBack();
 		displayResults(result.equals("{PIN}"), "testRemoveBack");
-		sizer = list1.size();
-		displayResults(sizer==3, "testSizeAndIsEmpty");
-		displayResults(list1.isEmpty()==false, "testSizeAndIsEmpty");
 
 		list1.removeBack();
 		result = list1.frontToBack();
 		displayResults(result.equals("{PI}"), "testRemoveBack");
-		sizer = list1.size();
-		displayResults(sizer==2, "testSizeAndIsEmpty");
-		displayResults(list1.isEmpty()==false, "testSizeAndIsEmpty");
 
 		list1.removeBack();
 		result = list1.frontToBack();
 		displayResults(result.equals("{P}"), "testRemoveBack");
-		sizer = list1.size();
-		displayResults(sizer==1, "testSizeAndIsEmpty");
-		displayResults(list1.isEmpty()==false, "testSizeAndIsEmpty");
+
 
 		list1.removeBack();
 		result = list1.frontToBack();
 		displayResults(result.equals("{}"), "testRemoveBack");
-		sizer = list1.size();
-		displayResults(sizer==0, "testSizeAndIsEmpty");
-		displayResults(list1.isEmpty()==true, "testSizeAndIsEmpty");
-
-		list1.removeBack();
-		result = list1.frontToBack();
-		displayResults(result.equals("{}"), "testRemoveBack");sizer = list1.size();
-		displayResults(sizer==0, "testSizeAndIsEmpty");
-		displayResults(list1.isEmpty()==true, "testSizeAndIsEmpty");
-
 	}
 	
 	public static void testRotate() {
 		String result = "";
 		A3LinkedList list1 = new A3LinkedList();
-		A3LinkedList empt = new A3LinkedList();
-
+		
 		list1.addBack("A");
 		list1.addBack("B");
 		list1.addBack("C");
@@ -222,38 +173,14 @@ public class A3Tester {
 		result = list1.frontToBack();
 		displayResults(result.equals("{DEFGABC}"), "testRotate");
 		
-		list1.rotate(3);
-		result = list1.frontToBack();
-		displayResults(result.equals("{ABCDEFG}"), "testRotate");
-
-		list1.rotate(7);
-		result = list1.frontToBack();
-		displayResults(result.equals("{ABCDEFG}"), "testRotate");
-
-		list1.rotate(49);
-		result = list1.frontToBack();
-		displayResults(result.equals("{ABCDEFG}"), "testRotate");
-
-		list1.rotate(50);
-		result = list1.frontToBack();
-		displayResults(result.equals("{GABCDEF}"), "testRotate");
-
-		empt.rotate(1);
-		result = empt.frontToBack();
-		displayResults(result.equals("{}"), "testRotate");
-
-		empt.rotate(100);
-		result = empt.frontToBack();
-		displayResults(result.equals("{}"), "testRotate");
+		/* Write additional tests here to ensure all of your pointers
+		   have been updated correctly. */
+		
 	}
 
 	public static void testInterleave() {
 		A3LinkedList list1 = new A3LinkedList();
 		A3LinkedList list2 = new A3LinkedList();
-		A3LinkedList ollie = new A3LinkedList();
-		A3LinkedList brown = new A3LinkedList();
-		A3LinkedList empt1 = new A3LinkedList();
-		A3LinkedList empt2 = new A3LinkedList();
 		String result1 = "";
 		String result2 = "";
 		
@@ -283,73 +210,8 @@ public class A3Tester {
 		displayResults(result1.equals("{AMCOEQG}"), "testInterleave");
 		displayResults(result2.equals("{LBNDPFR}"), "testInterleave");
 
-		ollie.addBack("A");
-		ollie.addBack("B");
-		result1 = ollie.frontToBack();
-		displayResults(result1.equals("{AB}"), "testInterleave BASIC");
-		brown.addBack("L");
-		brown.addBack("M");
-		result2 = brown.frontToBack();
-		displayResults(result2.equals("{LM}"), "testInterleave BASIC");
-		
-		ollie.interleave(brown);
-		result1 = ollie.frontToBack();
-		result2 = brown.frontToBack();
-		displayResults(result1.equals("{AM}"), "testInterleave Ollie");
-		displayResults(result2.equals("{LB}"), "testInterleave Brown");
-		// System.out.println(result1); all the commented lines are just for debugging
-		// System.out.println(result2); 
-
-		ollie.addBack("A");
-		ollie.addBack("B");
-		//result1 = ollie.backToFront();
-		//System.out.println(result1);
-		result1 = ollie.frontToBack();
-		//System.out.println(result1);
-		displayResults(result1.equals("{AMAB}"), "testInterleave BASIC");
-		brown.addBack("L");
-		brown.addBack("M");
-		//result2 = brown.backToFront();
-		//System.out.println(result2);
-		result2 = brown.frontToBack();
-		//System.out.println(result2);
-		displayResults(result2.equals("{LBLM}"), "testInterleave BASIC");
-
-		brown.interleave(ollie);
-		result1 = ollie.frontToBack();
-		result2 = brown.frontToBack();
-		displayResults(result1.equals("{ABAM}"), "testInterleave Ollie");
-		displayResults(result2.equals("{LMLB}"), "testInterleave Brown");
-
-		ollie.interleave(ollie);
-		result1 = ollie.frontToBack();
-		displayResults(result1.equals("{ABAM}"), "testInterleave Ollie");
-
-		empt1.addBack("e");
-		empt2.addBack("w");
-		result1 = empt1.frontToBack();
-		displayResults(result1.equals("{e}"), "testInterleave BASIC");
-		result2 = empt2.frontToBack();
-		displayResults(result2.equals("{w}"), "testInterleave BASIC");
-		empt1.interleave(empt2);
-		result1 = empt1.frontToBack();
-		result2 = empt2.frontToBack();
-		displayResults(result1.equals("{e}"), "testInterleave empt1");
-		displayResults(result2.equals("{w}"), "testInterleave empt2");
-
-		empt1.addBack("e");
-		empt2.addBack("w");
-		result1 = empt1.frontToBack();
-		displayResults(result1.equals("{ee}"), "testInterleave BASIC");
-		result2 = empt2.frontToBack();
-		displayResults(result2.equals("{ww}"), "testInterleave BASIC");
-		empt1.interleave(empt2);
-		result1 = empt1.frontToBack();
-		result2 = empt2.frontToBack();
-		displayResults(result1.equals("{ew}"), "testInterleave Ollie");
-		displayResults(result2.equals("{we}"), "testInterleave Brown");
-
-
+		/* Write additional tests here to ensure all of your pointers
+		   have been updated correctly. */
 
 	}
 	
