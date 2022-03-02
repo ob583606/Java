@@ -10,53 +10,46 @@ public class QueueRefBased implements Queue {
 	}
 
 	public int size() {
-		int count = 0;		
-		
-		while (front.next != null) {
-			count++;
-			front = front.next;
+		QueueNode cur = front;
+		int count = 0;
+		while (cur != null) {
+			cur = cur.next;
+			count ++;
 		}
-
-		return count;			
+		return count;
 	}
 
 	public boolean isEmpty() {
-		return this.size() == 0;
+		return size() == 0;
 	}
 
 	public void enqueue (int value) {
-		QueueNode nq = new QueueNode(value);
-
-		if (front == null) {
-			front = nq;
-			back = nq;
-		} else {
-			nq.setNext(back.next);
-			back = nq;
+		QueueNode n = new QueueNode(value);
+		if (size() == 0) {
+			front = n;
+			back = n;
+		}
+		else {
+			back.next = n;
+			back = n;
 		}
 	}
 
 	public int dequeue() {
-		if (front == null) {
-			return 0;
-		} else if (this.size() == 1) {
-			QueueNode temp = new QueueNode(0);
-			temp.setNext(front);
-			front = null;
-			return temp.getNext().getValue();
-		} else {
-			QueueNode temp = new QueueNode(0);
-			temp.setNext(front);
-			front = front.next.getNext();
-			return temp.getValue();
+		int data = -1;
+		if (size() != 0) {
+			data = front.data;
+			front = front.next;
 		}
+		return data;
 	}
 
 	public int peek()  {
-		return -1; // so it compiles
+		return back.data;
 	}
 
 	public void makeEmpty() {
-
+		front = null;
+		back = null;
 	}
 }
