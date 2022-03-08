@@ -1,5 +1,3 @@
-import java.awt.print.Book;
-
 public class A5Exercises {
 
 	// PART 1
@@ -183,7 +181,8 @@ public class A5Exercises {
 			return true;
 		}
 		A5Stack<Book> f = new A5Stack<Book>();
-		boolean stat = scRecursive(s, f, s.top().getNumberOfPages());
+		f.push(s.pop());
+		boolean stat = scRecursive(s, f, f.top().getPages());
 		putBooksBack(s, f);
 		return stat;
 	}
@@ -193,10 +192,9 @@ public class A5Exercises {
 			return true;
 		}
 		f.push(s.pop());
-		if (f.top().getPages() > size) {
+		if (f.top().getPages() < size) {
 			return false;
 		}
-		size = f.top().getPages();
-		return scRecursive(s, f, size);
+		return scRecursive(s, f, f.top().getPages());
 	}
 }
