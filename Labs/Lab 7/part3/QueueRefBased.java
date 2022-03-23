@@ -36,23 +36,18 @@ public class QueueRefBased<T> implements Queue<T> {
         }
     }
 
-    public T dequeue() throws QueueEmptyException{
+    public T dequeue() {
 
         T val = front.getValue();
         front = front.next;
-        if (front == null) {
+        if (front == null)
             back = null;
-            throw new QueueEmptyException("");
-        }
 
         return val;
     }
 
-    public T peek() throws QueueEmptyException{
-        
-        if (front == null) {
-            throw new QueueEmptyException("");
-        } 
+    public T peek()  {
+
         T val = front.getValue();
         return val;
     }

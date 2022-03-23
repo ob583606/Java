@@ -72,7 +72,7 @@ public interface Queue<T> {
      *    then after q.dequeue(), q is {y, z} and x is returned to the
      *    caller.
      */
-	T dequeue() throws QueueEmptyException;
+	T dequeue();
 
 
 
@@ -96,7 +96,7 @@ public interface Queue<T> {
      *    then after q.peek(), q is {x, y, z} and x is returned to the
      *    caller.
      */
-	T peek() throws QueueEmptyException;
+	T peek();
 
 
     /*

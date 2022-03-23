@@ -10,7 +10,7 @@ public class Lab7Part2Tester {
 		
 		try {
 			testBasicStack();
-            testStackUseFunctions();
+//            testStackUseFunctions();
 
 			
 		} catch (Exception e) {
@@ -34,20 +34,16 @@ public class Lab7Part2Tester {
 
 	public static String reverseString(String str) {
 		String result = "";
-		
+		/*
 		Stack stk = new StackArrayBased();
 		for(int i=0; i<str.length(); i++) {
 			stk.push(str.charAt(i));
 		}
 
 		while (!stk.isEmpty()) {
-			try {
-				result +=stk.pop();
-			} catch (StackEmptyException e) {
-				return result;
-			}
+			result +=stk.pop();
 		}
-	
+		*/
 		return result;
 	}
 
@@ -57,10 +53,8 @@ public class Lab7Part2Tester {
 	 * Parameters: String str - the String check
 	 * Returns: boolean - true if brackets are matched, false otherwise
 	 */
-
-	//
 	public static boolean doBracketsMatch(String str) {
-		
+		/*
 		Stack stk = new StackArrayBased();
 		char c = ' ';
 		char popped = ' ';
@@ -69,14 +63,14 @@ public class Lab7Part2Tester {
 			if (c == '(') {
 				stk.push(c);
 			} else if (c == ')') {
-				try {
-					popped = stk.pop();
-				} catch (StackEmptyException e) {
+				if (stk.isEmpty()) {
 					return false;
+				} else {
+					popped = stk.pop();
 				}
 			}
 		}
-		
+		*/
 		return true;
 	}
 
@@ -198,14 +192,14 @@ public class Lab7Part2Tester {
 		
 		// TODO: Write code to test that exception is thrown when it should be
 		// For example:
-		try {
-			StackArrayBased f = new StackArrayBased();
-			f.pop();
-			displayResults(false, "exception thrown when it should not be");
-		}  catch (StackEmptyException see) {
-			// we should get here - test passes
-			displayResults(true, "exception thrown when it should be");
-		}
+		//        try {
+		//           // do something that you know will throw an exception
+		//            // we should not get here - test passes
+		//            displayResults(false, "exception thrown when it should not be");
+		//        }  catch (StackEmptyException see) {
+		//            // we should get here - test passes
+		//            displayResults(true, "exception thrown when it should be");
+		//        }
 		
 		
 		System.out.println("testBasicStack: end");

@@ -22,52 +22,39 @@ public class Exercise2 {
 		bar should print a message that it is throwing an exception
 		and then throw a BException */  
 
-		public static void bar (int y) throws BException{
-			System.out.println("start bar");
-			if (y%3==0) {
-				System.out.println("throwing BException");
-				throw new BException();
-			}
-			System.out.println("end bar");
-		}
 	public static void main(String[] args) {
 		System.out.println("main start");
-		try {
-			foo(100);
-		} catch (AException e) {
 
-		} catch (BException e) {
-			System.out.println("caught in main: " + e);
-		}
+		foo(100);
 		System.out.println("foo with 100 done");
 
-		try {
-			foo(23);
-		} catch (AException e) {
-
-		} catch (BException e) {
-			System.out.println("caught in main: " + e);
-		}
+		foo(23);
 		System.out.println("foo with 23 done");
 
-		try {
-			foo(15);
-		} catch (AException e) {
-
-		} catch (BException e) {
-			System.out.println("caught in main: " + e);
-		}
+		foo(15);
 		System.out.println("foo with 15 done");
 
 		System.out.println("main end");
 	}
-	
-	public static void foo(int x) throws AException, BException{
-		System.out.println("start foo");
 
-		if (x%2 == 0) {
-			System.out.println("foo throws");
-			throw new AException();
+	public static void bar(int y) throws BException{
+		System.out.println("start bar");
+		if (y%3 == 0) {
+			System.out.println("exception thrown");
+			throw new BException();
+		}
+		System.out.println("end bar");
+	}
+	
+	public static void foo(int x) throws BException{
+		System.out.println("start foo");
+		try {
+			if (x%2 == 0) {
+				System.out.println("foo throws");
+				throw new AException();
+			}
+		} catch (AException e) {
+
 		}
 
 	/* TODO 3:
@@ -79,6 +66,8 @@ public class Exercise2 {
 			~ in catch block print: "caught in foo: " + the exception
 		- Trace the updated program on paper
 		- compile and run the program - does it match your expected output? */
+		
+		/*
 		try {
 			System.out.println("calling bar");
 			bar(x);
@@ -86,6 +75,11 @@ public class Exercise2 {
 		} catch (BException e) {
 			System.out.println("caught in foo: " + e);
 		}
+		*/
+
+		System.out.println("calling bar");
+		bar(x);
+		System.out.println("done calling bar");
 
 	/* TODO 4:
 		- remove the try/catch block wrapped around the call to bar
