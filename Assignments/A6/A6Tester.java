@@ -3,7 +3,7 @@ public class A6Tester {
 	private static int testCount = 0;	
 	
 	public static void main(String[] args) {
-		listTests();
+		//listTests();
 		disneyTests();
 		
 		System.out.println("Passed " + testPassCount + " / " + testCount + " tests");

@@ -39,67 +39,59 @@ public class LinkedList<T> implements List<T> {
 	}
 	
 	public void insertAt(int position, T val) throws InvalidPositionException {
-		try {
-			if (position == 0) {
-				addFront(val);
-			} else if (position == numElements) {
-				addBack(val);
-			} else {
-				Node<T> cur = head;
-				for (int i = 0; i < position-1; i++) {
-					cur = cur.next;
-				}
-				// Now cur is pointing the node in the position
-				// one before the place we want to insert.
-				Node<T> n = new Node<T>(val);
-				n.next = cur.next;
-				cur.next = n;
-				numElements++;
+		if (position == 0) {
+			addFront(val);
+		} else if (position == numElements) {
+			addBack(val);
+		} else if (position < 0) {
+			throw new InvalidPositionException();
+		} else if (position > numElements) {
+			throw new InvalidPositionException();
+		} else {
+			Node<T> cur = head;
+			for (int i = 0; i < position-1; i++) {
+				cur = cur.next;
 			}
-		} catch (InvalidPositionException e) {
-			return;
+			// Now cur is pointing the node in the position
+			// one before the place we want to insert.
+			Node<T> n = new Node<T>(val);
+			n.next = cur.next;
+			cur.next = n;
+			numElements++;
 		}
 	}
 	
 	public T removeFront() throws ListEmptyException {
-		try {
-			if (head == null) {
-				return null;
-			}
-			T toReturn = head.getData();
-			if (head.next == null) {
-				tail = null;
-			}
-			head = head.next;
-			numElements--;
-			return toReturn;
-		} catch (ListEmptyException e) {
-			return null;
+		if (head == null) {
+			throw new ListEmptyException();
 		}
+		T toReturn = head.getData();
+		if (head.next == null) {
+			tail = null;
+		}
+		head = head.next;
+		numElements--;
+		return toReturn;
 	}
 	
 	public T removeBack() throws ListEmptyException {
-		try {
-			if (head == null) {
-				return null;
-			}
-			T toReturn = tail.getData();
-			if (head.next == null) {
-				head = null;
-				tail = null;
-			} else {
-				Node<T> cur = head;
-				while (cur.next != tail) {
-					cur = cur.next;
-				}
-				cur.next = null;
-				tail = cur;
-			}
-			numElements--;
-			return toReturn;
-		} catch (ListEmptyException e) {
-			return null;
+		if (head == null) {
+			throw new ListEmptyException();
 		}
+		T toReturn = tail.getData();
+		if (head.next == null) {
+			head = null;
+			tail = null;
+		} else {
+			Node<T> cur = head;
+			while (cur.next != tail) {
+				cur = cur.next;
+			}
+			cur.next = null;
+			tail = cur;
+		}
+		numElements--;
+		return toReturn;
 	}
 
 	/* Parameters: nothing

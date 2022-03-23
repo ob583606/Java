@@ -23,7 +23,7 @@ public class DisneylandLine {
 	 * Returns void - nothing
 	 */
 	public void enterLine(Person p) {
-		// TODO: implement this
+		list.addBack(p);
 	}
 	
 	/*
@@ -37,8 +37,11 @@ public class DisneylandLine {
 	 *                   from the line
 	 */
 	public Person handleOne() {
-		// TODO: implement this
-		return null; // so it compiles
+		try {
+			return list.removeFront();
+		} catch (ListEmptyException e) {
+			return null;
+		}
 	}
 	
 	/*
@@ -50,8 +53,21 @@ public class DisneylandLine {
 	 *               able to be removed from the line
 	 */
 	public int handleMultiple(int num) {
-		// TODO: implement this
-		return -1; // so it compiles
+		if (num < 1) {
+			return 0;
+		}
+		int count = 0;
+
+		try {
+			while (count < num) {
+				list.removeFront();
+				count++;
+			}
+		} catch (ListEmptyException e) {
+			return count;
+		}
+		
+		return count;
 	}
 	
 	/*
@@ -62,8 +78,15 @@ public class DisneylandLine {
 	 * Returns boolean - true if person added to line, false otherwise
 	 */
 	public boolean premiumEntry(Person p, int pos) {
-		// TODO: implement this
-		return false; // so it compiles
+		if (pos < 0) {
+			return false;
+		}
+		try {
+			list.insertAt(pos, p);
+			return true;
+		} catch (InvalidPositionException e) {
+			return false;
+		}
 	}
 	
 	/*
@@ -72,8 +95,7 @@ public class DisneylandLine {
 	 * Returns: int - number of people in line
 	 */
 	public int peopleInLine() {
-		// TODO: implement this
-		return -1; // so it compiles
+		return list.size();
 	}
 }
 	
