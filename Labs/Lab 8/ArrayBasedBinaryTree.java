@@ -14,9 +14,9 @@ public class ArrayBasedBinaryTree implements BinaryTree {
 		// allocate space for data array.
 		// What index are you choosing the root to be?
 		// initialize your size as the number of elements in the empty tree
-		data = new Integer[CAPACITY];
-		root = 1;
-		size = 0;
+		Integer[] data = new Integer[CAPACITY];
+		root = data[1];
+		size = CAPACITY;
 	}
 
 	/*
@@ -31,11 +31,7 @@ public class ArrayBasedBinaryTree implements BinaryTree {
 		// NOTE: The underlying data structure is an array,
 		//  but we are just USING the array to store the data.
 		//  The way we traverse the data will expose its binary tree structure
-		if (size+1 == data.length) {
-			expandAndCopy();
-		}
-		data[size+1] = value;
-		size++;
+		
 	}
 
 	protected void expandAndCopy() {
@@ -44,6 +40,7 @@ public class ArrayBasedBinaryTree implements BinaryTree {
 			newData[i] = data[i];
 		}
 		data = newData;
+		size *= 2;
 	}
 
 	/*
@@ -52,7 +49,10 @@ public class ArrayBasedBinaryTree implements BinaryTree {
 	 * Returns: int - index of left child
 	 */
 	protected int getLeft(int t) {
-		return t*2;
+		if (t*2 >= size ) {
+			return -1;
+		}
+		return data[(t*2)];
 	}
 
 	/*
@@ -61,62 +61,36 @@ public class ArrayBasedBinaryTree implements BinaryTree {
 	 * Returns: int - index of right child
 	 */
 	protected int getRight(int t) {
-		return t*2+1;
+		if ((t*2)+1 >= size ) {
+			return -1;
+		}
+		return (t*2)+1;
 	}
 
 
 	public void inOrder(){
-		if (size < 1) {
-			return;
+		for(int i=0; (getLeft(i/2) != -1); i++) {
+			System.out.println(data[i]);
 		}
-		inOrderHelp(1);
-
-	}
-
-	public void inOrderHelp(int ind){
-		if (ind > size) {
-			return;
-		}
-		inOrderHelp(getLeft(ind));
-		System.out.println(data[ind]);
-		inOrderHelp(getRight(ind));
 	}
 
 
 	public void preOrder(){
-		if (size < 1) {
-			return;
+		for(int i=0; (getLeft(i/2) != -1); i++) {
+			System.out.println(data[i]);
 		}
-		preOrderHelp(1);
 	}
 
-	public void preOrderHelp(int ind){
-		if (ind > size) {
-			return;
-		}
-		System.out.println(data[ind]);
-		preOrderHelp(getLeft(ind));
-		preOrderHelp(getRight(ind));
-	}
 
 	public void postOrder(){
-		if (size < 1) {
-			return;
+		for(int i=0; (getLeft(i/2) != -1); i++) {
+			System.out.println(data[i]);
 		}
-		postOrderHelp(1);
 	}
 
-	public void postOrderHelp(int ind){
-		if (ind > size) {
-			return;
-		}
-		postOrderHelp(getLeft(ind));
-		postOrderHelp(getRight(ind));
-		System.out.println(data[ind]);
-	}
 
 	public int height() {
-		return heightHelp(root);
+		return height(root);
 	}
 
 	/*
@@ -130,13 +104,26 @@ public class ArrayBasedBinaryTree implements BinaryTree {
 	 *       the height of a node in a tree is equal to 
 	 *       1 + the height of its largest subtree
 	 */
-	
-	protected int heightHelp(int ind) {
-		if (ind > size) {
-			return 0;
+	protected int height(int t) {
+		if (t >= size) {
+            return 0;
+        }
+		if (t < 0) {
+            return -1;
+        }
+		if (size == 0) {
+			return -1;
 		}
-		return 1 + Math.max(heightHelp(getLeft(ind)), heightHelp(getRight(ind)));
+		if (t == 1) {
+            return 0;
+        }
+		for (int i = 0; i < size; i++) {
+			if
+		}
+		// TODO: complete the rest
+		return 0; // so it compiles
 	}
+	
 
 	/*
 	 * Purpose: returns a String reprensentation of a in-order traversal
@@ -176,6 +163,7 @@ public class ArrayBasedBinaryTree implements BinaryTree {
 		myTree.preOrder();
 		System.out.println("post");
 		myTree.postOrder();
+		
 		System.out.println("toString\n" + myTree);
 	}
     

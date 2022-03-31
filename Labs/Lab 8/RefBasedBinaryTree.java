@@ -8,7 +8,7 @@ public class RefBasedBinaryTree implements BinaryTree {
 	protected TreeNode root;
 
 	public RefBasedBinaryTree() {
-		root = null;
+		// TODO...
 	}
 
 	public void insert(Integer value){
@@ -43,9 +43,11 @@ public class RefBasedBinaryTree implements BinaryTree {
 		}
 	}
 	
+	
 	public int height() {
 		return height(root);
 	}
+
 	/*
 	 * Purpose: computes and returns the height of a 
 	 *          binary tree rooted a t 
@@ -53,61 +55,26 @@ public class RefBasedBinaryTree implements BinaryTree {
 	 * Returns: int - the height
 	 * NOTE: a BinaryTree with no node is height 0
 	 */
-	public int height(TreeNode t) {
-		if (root == null) {
-			return 0;
-		}
-		return heightHelp(t) - 1;
-	}
-	protected int heightHelp(TreeNode t) {
-		if (t == null) {
-			return 0;
-		}
-		return 1 + Math.max(heightHelp(t.getLeft()), heightHelp(t.getRight()));
+	protected int height(TreeNode t) {
+		// TODO...
+		return 0;
 	}
 
 
 	public void inOrder(){
-		inOrderHelp(root);
+		// TODO...
 	}
 
-	public void inOrderHelp(TreeNode cur) {
-		if (cur == null) {
-			return;
-		}
-		inOrderHelp(cur.getLeft());
-		System.out.println(cur.data);
-		inOrderHelp(cur.getRight());
-	}
 
 	public void preOrder(){
-		preOrderHelp(root);
+		// TODO...
 	}
 
-	public void preOrderHelp(TreeNode cur) {
-		if (cur == null) {
-			return;
-		}
-		System.out.println(cur.data);
-		preOrderHelp(cur.getLeft());
-		preOrderHelp(cur.getRight());
-	}
 
 	public void postOrder(){
-		if (root == null) {
-			return;
-		}
-		postOrderHelp(root);
+		// TODO...
 	}
 
-	public void postOrderHelp(TreeNode cur) {
-		if (cur == null) {
-			return;
-		}
-		postOrderHelp(cur.getLeft());
-		postOrderHelp(cur.getRight());
-		System.out.println(cur.data);
-	}
 	/*
 	 * Purpose: returns a String reprensentation of this Shape
 	 * Parameters: none
